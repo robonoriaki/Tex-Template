@@ -1,0 +1,302 @@
+\documentclass[11pt,a4j]{jarticle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+
+\def\@thesis{認識工学}
+ \def\id#1{\def\@id{#1}}%
+ \def\college#1{\def\@college{#1}}
+ \def\department#1{\def\@department{#1}}
+
+\def\@maketitle{%titleの定義
+ \begin{center}
+ {\LARGE \@thesis \par} %修士論文と記載される部分
+%\vspace{10mm}
+ {\Huge \@title \par}% 論文のタイトル部分
+\vspace{150mm}
+\end{center}
+\begin{flushleft}
+%\vspace{20mm}
+{\Large 大学：\@college \par}
+ {\Large 学部学科：\@department \par} % 所属部分
+{\Large 学籍番号：\@id \par} % 学籍番号部分
+ {\Large 氏名：\@author　\par}% 氏名
+ {\Large 提出日：\@date} % 提出年月日部分
+\end{flushleft} 
+ \par\vskip 1.5em
+ }
+
+\makeatother
+
+ \title{DPマッチングを用いた単語音声認識}
+ \date{\today}
+ \college{千葉工業大学}
+ \department{工学部未来ロボティクス学科}
+ \id{1526038}
+ \author{金井徳亮}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% facyhdrパッケージを読み込む
+\usepackage{fancyhdr}
+ % fancyhdrパッケージを使うスタイルにする
+\pagestyle{fancy}
+
+ \lhead{} % 左ヘッダに出力する内容。空白でも可。
+\chead{} % 中央ヘッダに出力する内容。空白でも可。
+\rhead{} % 右ヘッダに出力する内容。空白でも可。
+
+\def\headrulewidth{0pt} % ヘッダと本文領域の区切り線の幅。いらないなら0pt
+
+ \lfoot{} % 左フッタに出力する内容。空白でも可。
+\cfoot{} % 中央フッタに出力する内容。空白でも可。
+\rfoot{\thepage/18} % 右フッタに出力する内容。空白でも可。\thepageはページ番号を出力するコマンド
+
+\def\footrulewidth{0pt} % フッタと本文領域の区切り線の幅。いらないなら0pt
+
+\setcounter{page}{0}%ページ番号の開始番号を設定
+
+\usepackage[dvipdfmx]{graphicx}%図の挿入のためのパッケージ
+%\usepackage[subrefformat=parens]{subcaption}
+%\captionsetup{compatibility=false}
+\usepackage{here}%Hを使うのに必要
+
+\usepackage{ascmac}%枠を使用するためのパッケージ
+
+\usepackage{amsmath}%分数用
+
+%式番号に節番号を追加
+\makeatletter
+    \renewcommand{\theequation}{%
+    \thesection.\arabic{equation}}
+    \@addtoreset{equation}{section}
+  \makeatother
+%図に節番号を追加
+\makeatletter
+    \renewcommand{\thefigure}{%
+    \thesection.\arabic{figure}}
+    \@addtoreset{figure}{section}
+  \makeatother
+%表に節番号を追加
+\makeatletter
+ \renewcommand{\thetable}{%
+   \thesection.\arabic{table}}
+  \@addtoreset{table}{section}
+\makeatother
+
+\usepackage{listings}%プログラムを貼り付ける
+
+\lstset{%プログラムを載せる際の設定
+  language={C},
+  basicstyle={\small},%
+  identifierstyle={\small},%
+  %commentstyle={\small\itshape},%
+  commentstyle={\small},%
+  keywordstyle={\small\bfseries},%
+  ndkeywordstyle={\small},%
+  stringstyle={\small\ttfamily},
+  frame={tb},
+  breaklines=true,
+  columns=[l]{fullflexible},%
+  numbers=left,%
+  xrightmargin=0zw,%
+  xleftmargin=3zw,%
+  numberstyle={\scriptsize},%
+  stepnumber=1,
+  numbersep=1zw,%
+  lineskip=-0.5ex%
+}
+
+\begin{document}
+\maketitle%表紙の作成
+\thispagestyle{empty}%ページ番号を消去
+
+\newpage
+%\parindent 0pt%インデントしない、このドキュメント全体で
+
+
+\section{方法・内容}
+\subsection{課題}
+認識工学の授業で以下の課題が出題された。
+\begin{screen}
+動的計画法（DP）マッチングのアルゴリズムを利用し、小規模の単語音声認識実験を行う。簡単のため、音声入力→音響分析までの過程はすでに終了しているものとし、あらかじめ用意されたテキストファイルのデータを入力とする。100単語のテンプレートに対して、同じ発声内容の100単語（同一話者または別話者）を未知音声と見立てて入力したとき、何単語が正しく認識できるかを調べる。
+\end{screen}
+
+\subsection{手順}
+以下に行った手順を示す。
+\begin{enumerate}
+	\item データファイルを千葉工業大学の授業支援システムからダウンロードする。
+	\item C言語でDPマッチングのアルゴリズムを記述する。
+	\item 作成したプログラムを実行し、認識実験を行う。
+	\item 実験結果をまとめる。
+	\item 実験結果より考察を行う。
+	\item レポートを作成する。
+\end{enumerate}
+
+\subsection{環境と機器}
+環境と使用した機器を以下にまとめる。
+\begin{description}%題付きの箇条書き
+	\item[コンピュータ]：Panasonic Let's note CF-SX4
+	\item[OS]：Windows8.1
+	\item [プログラミング言語]：C言語
+	\item[コンパイラ]：gcc
+\end{description}
+
+\subsection{実装するアルゴリズム}
+プログラムのアルゴリズムについて述べる。\par
+\begin{enumerate}
+	\item テンプレートの100単語のデータファイルを読みこむ。
+	\item 認識対象（未知入力）の100単語から1単語のデータファイルを読みこむ。
+	\item テンプレート中の単語A（フレーム数I）と未知入力単語B（フレーム数J）のマッチングを考える。Aのi番目フレームのデータ、15次元を$a_{i,k}$、Bのj番目のフレームデータを$b_{j,k}$とすると、そのあいだの局所距離は以下のようになる。
+		\begin{equation}
+			d(i,j) = \sqrt{(a_{i,1} - b_{j,1})^2 + (a_{i,2} - b_{j,2})^2 + ・・・+ (a_{i,15} - b_{j,15})^2}
+			\label{eq:e1}
+		\end{equation}
+	\item 局所距離を全てのフレーム相互間について計算した後、DPマッチングのアルゴリズムに沿って、初期条件$g(0,0)$、境界条件$g(i,0)$、$g(0,j)$およびその他の格子点における累積距離$g(i,j)$を順次計算する。その他の格子点では最も小さい値を用いる。
+初期条件
+\begin{equation}
+	g(0,0) = d(0,0)
+	\label{eq:e2}
+\end{equation}\par
+境界条件
+\begin{equation}
+	i > 0について g(i,0) = g(i -1,0) + d(i,0)
+	\label{eq:e3}
+\end{equation}
+\begin{equation}
+	j > 0について g(0,j) = g(0,j - 1) + d(0,j)
+	\label{eq:e4}
+\end{equation}
+その他の格子点
+	\[
+g(i,j) = min\left[
+    \begin{array}{ccc}
+      g(i,j - 1) + d(i,j)\\
+      g(i  - 1,j - 1)+2d(i,j)\\
+      g(i - 1,j) + d(i,j)
+    \end{array}
+  \right]
+\]
+\begin{equation}
+\end{equation}
+	\item 最終点までの累積距離$g(I,J)$が得られたら、その値を$(I + J)$で割った値をAとBの単語間距離とする。
+	\item テンプレートの100単語全てについて単語間距離を計算し、その中で最小の値を与えた単語を正解とする。
+	\item 正解とした単語と認識対象の単語が一致しているか見る。
+	\item 一致していなかった場合はテンプレートのどの単語と間違えたのかを記録するためにテキストファイルに出力する。
+	\item 2から8を認識対象100単語全てについて行う。
+	\item 一致した回数から単語正解率を出力する。
+\end{enumerate}
+
+\section{結果}
+
+\subsection{ソースコード}
+ソースコードの説明をする。\par
+テンプレートのデータファイルと認識対象単語（未知入力）のデータファイルを読み込み、それぞれの局所距離を計算し、累積距離を算出する。累積距離から単語間距離を計算し、最小をあたえるものを探す。これを全ての認識対象単語について行い、単語正解率を求める。\par
+以下に作成したソースコードを載せる。
+%プログラムの出力
+\lstinputlisting[caption=ソースコード,label=a]{dp-10.c}
+
+\subsection{認識結果}
+\subsubsection{単語正解率}
+単語正解率を表にまとめた。縦方向のファイル名はテンプレートデータとして扱ったもの。横方向のファイル名は認識対象データとして扱ったものである。
+\begin{table}[H]
+ \caption{テンプレートデータと認識対象データの認識結果}
+  \label{table:t1}
+\begin{center}
+	\begin{tabular}{|c|c|c|c|c|} \hline
+		 & city\_011 & city\_012 & city\_021 & city\_022 \\ \hline
+		city\_011 & 100\% & 100\% & 83\% & 88\% \\ \hline
+		city\_012 & 99\% & 100\% & 96\% & 94\% \\ \hline
+		city\_021 & 92\% & 93\% & 100\% & 100\% \\ \hline
+		city\_022 & 85\% & 87\% & 99\% & 100\% \\ \hline
+	\end{tabular}
+\end{center}
+\end{table}
+
+\newpage
+\subsubsection{認識が失敗した単語の組み合わせ}
+テンプレートデータがcity\_011のとき認識が失敗した単語の組み合わせの単語番号を以下の表にまとめた。
+\begin{table}[H]
+ \caption{認識失敗1}
+  \label{table:t2}
+\begin{center}
+\begin{minipage}{0.38\hsize}%2列で表示
+	\begin{tabular}{|c|cc|} \hline
+		個数 & 認識対象 & テンプレート \\ \hline
+		 & city\_021 & city\_011 \\ \hline
+		1 & 8 & 31 \\ \hline
+		2 & 14 & 19 \\ \hline
+		3 & 15 & 54 \\ \hline
+		4 & 43 & 57 \\ \hline
+		5 & 44 & 38 \\ \hline
+		6 & 46 & 12 \\ \hline
+		7 & 58 & 20 \\ \hline
+		8 & 60 & 20 \\ \hline
+		9 & 62 & 20 \\ \hline
+		10 & 74 & 19 \\ \hline
+		11 & 79 & 41 \\ \hline
+		12 & 91 & 4 \\ \hline
+		13 & 92 & 41 \\ \hline
+		14 & 94 & 36 \\ \hline
+		15 & 97 & 41 \\ \hline
+		16 & 98 & 26 \\ \hline
+		17 & 99 & 47 \\ \hline
+	\end{tabular}
+\end{minipage}
+\begin{minipage}{0.2\hsize}%2列で表示
+	\begin{tabular}{cc|} \hline
+		  認識対象 & テンプレート \\ \hline
+		  city\_022 & city\_011 \\ \hline
+		  8 & 31 \\ \hline
+		  13 & 82 \\ \hline
+		  15 & 54 \\ \hline
+		  30 & 34 \\ \hline
+		  36 & 61 \\ \hline
+		  46 & 12 \\ \hline
+		  58 & 20 \\ \hline
+		  62 & 20 \\ \hline
+		  79 & 10 \\ \hline
+		  93 & 41 \\ \hline
+		  97 & 41 \\ \hline
+		  99 & 40 \\ \hline
+		   &  \\ \hline
+		   &  \\ \hline
+		   &  \\ \hline
+		   &  \\ \hline
+		   &  \\ \hline
+	\end{tabular}
+\end{minipage}
+\end{center}
+\end{table}
+
+\subsection{認識失敗の原因に関する考察}
+認識失敗の原因についての考察を行う。\par
+実験結果より、単語正解率が比較的低かった別話者の実験において、認識に失敗した単語を見比べることにする。ソースコードを少し変更し、認識に失敗した組み合わせを出力するようにした。tempがテンプレートの単語、cogが認識対象の単語である。その結果を以下に載せる。\par
+テンプレートデータがcity\_011で、認識対象データがcity\_021のとき
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[keepaspectratio,width=120mm]{false011-1.png}
+		\caption{認識失敗単語リスト1}
+		\label{fig:f-1}
+	\end{center}
+\end{figure}
+テンプレートデータがcity\_011で、認識対象データがcity\_022のとき
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[keepaspectratio,width=120mm]{false011-2.png}
+		\caption{認識失敗単語リスト2}
+		\label{fig:f-2}
+	\end{center}
+\end{figure}
+
+\section{まとめ}
+目的を「DPマッチングのアルゴリズムを利用して、単語音声認識を行い、その結果をまとめる。また、結果より考察を行い、レポートにまとめる。」とした。
+DPマッチングの考え方について説明し、実験の方法や内容、プログラムのアルゴリズムについて記述した。
+予想を述べ、実験結果において、単語正解率と認識が失敗した単語の組み合わせを示した。
+実験結果より、特徴量ベクトルを考慮しながら単語正解率に関しての考察と認識失敗の原因に関して考察を行った。
+
+\newpage
+\begin{thebibliography}{6}
+	なし
+\end{thebibliography}
+\end{document}
