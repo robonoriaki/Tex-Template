@@ -1,92 +1,88 @@
-\documentclass[11pt,a4j]{jarticle}
+%	UTF8
+\documentclass [titlepage, a4j, 11pt] {jsarticle}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\makeatletter
-
-\def\@thesis{”F¯HŠw}
- \def\id#1{\def\@id{#1}}%
- \def\college#1{\def\@college{#1}}
- \def\department#1{\def\@department{#1}}
-
-\def\@maketitle{%title‚Ì’è‹`
- \begin{center}
- {\LARGE \@thesis \par} %Cm˜_•¶‚Æ‹LÚ‚³‚ê‚é•”•ª
-%\vspace{10mm}
- {\Huge \@title \par}% ˜_•¶‚Ìƒ^ƒCƒgƒ‹•”•ª
-\vspace{150mm}
-\end{center}
-\begin{flushleft}
-%\vspace{20mm}
-{\Large ‘åŠwF\@college \par}
- {\Large Šw•”Šw‰ÈF\@department \par} % Š‘®•”•ª
-{\Large ŠwĞ”Ô†F\@id \par} % ŠwĞ”Ô†•”•ª
- {\Large –¼F\@author@\par}% –¼
- {\Large ’ño“úF\@date} % ’ño”NŒ“ú•”•ª
-\end{flushleft} 
- \par\vskip 1.5em
- }
-
-\makeatother
-
- \title{DPƒ}ƒbƒ`ƒ“ƒO‚ğ—p‚¢‚½’PŒê‰¹º”F¯}
- \date{\today}
- \college{ç—tH‹Æ‘åŠw}
- \department{HŠw•”–¢—ˆƒƒ{ƒeƒBƒNƒXŠw‰È}
- \id{1526038}
- \author{‹àˆä“¿—º}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% facyhdrƒpƒbƒP[ƒW‚ğ“Ç‚İ‚Ş
-\usepackage{fancyhdr}
- % fancyhdrƒpƒbƒP[ƒW‚ğg‚¤ƒXƒ^ƒCƒ‹‚É‚·‚é
+\listfiles
+\usepackage [dvipdfmx]{graphicx}
+\usepackage{slashbox}
+\usepackage {bm}
+\usepackage {amssymb}
+\usepackage {amsmath}
+%\usepackage {showkeys}
+\usepackage {comment}
+\usepackage {here}	%Hã‚’ä½¿ã†ãŸã‚ã®ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸
+%\usepackage{ascmac} %itembox, screenã§è§’ãŒä¸¸ããªã‚‹
+\usepackage {fancyhdr}
 \pagestyle{fancy}
 
- \lhead{} % ¶ƒwƒbƒ_‚Éo—Í‚·‚é“à—eB‹ó”’‚Å‚à‰ÂB
-\chead{} % ’†‰›ƒwƒbƒ_‚Éo—Í‚·‚é“à—eB‹ó”’‚Å‚à‰ÂB
-\rhead{} % ‰Eƒwƒbƒ_‚Éo—Í‚·‚é“à—eB‹ó”’‚Å‚à‰ÂB
+\lhead{}%left header
+%\lhead{\rightmark}
+\chead{}%center header
+\rhead{}%right header
+%\rhead{\leftmark}
+\def\headrulewidth{0pt}%header line 
 
-\def\headrulewidth{0pt} % ƒwƒbƒ_‚Æ–{•¶—Ìˆæ‚Ì‹æØ‚èü‚Ì•B‚¢‚ç‚È‚¢‚È‚ç0pt
+ \lfoot{}%left footer
+\cfoot{\thepage}%center footer
+\rfoot{}%right fooer
 
- \lfoot{} % ¶ƒtƒbƒ^‚Éo—Í‚·‚é“à—eB‹ó”’‚Å‚à‰ÂB
-\cfoot{} % ’†‰›ƒtƒbƒ^‚Éo—Í‚·‚é“à—eB‹ó”’‚Å‚à‰ÂB
-\rfoot{\thepage/18} % ‰Eƒtƒbƒ^‚Éo—Í‚·‚é“à—eB‹ó”’‚Å‚à‰ÂB\thepage‚Íƒy[ƒW”Ô†‚ğo—Í‚·‚éƒRƒ}ƒ“ƒh
+\def\footrulewidth{0pt}%footer line 
 
-\def\footrulewidth{0pt} % ƒtƒbƒ^‚Æ–{•¶—Ìˆæ‚Ì‹æØ‚èü‚Ì•B‚¢‚ç‚È‚¢‚È‚ç0pt
 
-\setcounter{page}{0}%ƒy[ƒW”Ô†‚ÌŠJn”Ô†‚ğİ’è
+%\graphicspath{{../fluid_analysis_pictures/}}%ã‚°ãƒ©ãƒ•ã®ãƒ‘ã‚¹
 
-\usepackage[dvipdfmx]{graphicx}%}‚Ì‘}“ü‚Ì‚½‚ß‚ÌƒpƒbƒP[ƒW
-%\usepackage[subrefformat=parens]{subcaption}
-%\captionsetup{compatibility=false}
-\usepackage{here}%H‚ğg‚¤‚Ì‚É•K—v
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% é«˜ã•ã®è¨­å®š
+\setlength {\textheight} {\paperheight}   % ã²ã¨ã¾ãšç´™é¢ã‚’æœ¬æ–‡é ˜åŸŸã«
+\setlength {\topmargin} {-5.4truemm}      % ä¸Šã®ä½™ç™½ã‚’20mm(=1inch-5.4mm)ã«
+\addtolength {\topmargin} {-\headheight}  % 
+\addtolength {\topmargin} {-\headsep}     % ãƒ˜ãƒƒãƒ€ã®åˆ†ã ã‘æœ¬æ–‡é ˜åŸŸã‚’ç§»å‹•ã•ã›ã‚‹
+\addtolength {\textheight} {-40truemm}    % ä¸‹ã®ä½™ç™½ã‚‚20mmã«
+%% å¹…ã®è¨­å®š
+\setlength {\textwidth} {\paperwidth}     % ã²ã¨ã¾ãšç´™é¢ã‚’æœ¬æ–‡é ˜åŸŸã«
+\setlength {\oddsidemargin} {-5.4truemm}  % å·¦ã®ä½™ç™½ã‚’20mm(=1inch-5.4mm)ã«
+\setlength {\evensidemargin} {-5.4truemm} % 
+\addtolength {\textwidth} {-40truemm}     % å³ã®ä½™ç™½ã‚‚20mmã«
 
-\usepackage{ascmac}%˜g‚ğg—p‚·‚é‚½‚ß‚ÌƒpƒbƒP[ƒW
+%å›³ï¼Œè¡¨ã®è¡¨ç¤ºå
+\renewcommand {\figurename} {Fig.}
+\renewcommand {\tablename} {Table}
 
-\usepackage{amsmath}%•ª”—p
-
-%®”Ô†‚Éß”Ô†‚ğ’Ç‰Á
+%å›³ã¨è¡¨ã‚’æ¨ªã«ä¸¦ã¹ã‚‹ãŸã‚ã®ã‚‚ã®
 \makeatletter
-    \renewcommand{\theequation}{%
-    \thesection.\arabic{equation}}
-    \@addtoreset{equation}{section}
-  \makeatother
-%}‚Éß”Ô†‚ğ’Ç‰Á
+\newcommand{\figcaption}[1]{\def\@captype{figure}\caption{#1}}
+\newcommand{\tblcaption}[1]{\def\@captype{table}\caption{#1}}
+\makeatother
+%ã“ã®æ™‚ï¼Œè¡¨ã®captionã¯\tblcaptionã¨ã™ã‚‹
+
+%å›³ï¼Œè¡¨ï¼Œå¼ãªã©ã®é–“éš”
+\setlength {\abovecaptionskip} {1mm}	%å›³ãƒ»è¡¨ã¨ã‚­ãƒ£ãƒ—ã‚·ãƒ§ãƒ³ã®é–“éš”ã®å¤‰æ›´
+\setlength {\belowcaptionskip} {1mm}
+\setlength {\abovedisplayskip} {3pt} % å¼ã®ä¸Šéƒ¨ã®ãƒãƒ¼ã‚¸ãƒ³
+\setlength {\belowdisplayskip} {3pt} % å¼ã®ä¸‹éƒ¨ã®ãƒãƒ¼ã‚¸ãƒ³
+
+%å›³ç•ªå·ã‚’(subsection).(å›³ç•ªå·)ã«å¤‰æ›´
 \makeatletter
-    \renewcommand{\thefigure}{%
-    \thesection.\arabic{figure}}
-    \@addtoreset{figure}{section}
-  \makeatother
-%•\‚Éß”Ô†‚ğ’Ç‰Á
-\makeatletter
- \renewcommand{\thetable}{%
-   \thesection.\arabic{table}}
-  \@addtoreset{table}{section}
+\renewcommand{\thefigure}{\thesection.\arabic{figure}}
+\@addtoreset{figure}{section}
+
+%è¡¨ç•ªå·ã‚’(subsection).(è¡¨ç•ªå·)ã«å¤‰æ›´
+\renewcommand{\thetable}{\thesection.\arabic{table}}
+\@addtoreset{table}{section}
+
+%å¼ç•ªå·ã‚’(subsection).(å¼ç•ªå·)ã«å¤‰æ›´
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+\@addtoreset{equation}{section}
 \makeatother
 
-\usepackage{listings}%ƒvƒƒOƒ‰ƒ€‚ğ“\‚è•t‚¯‚é
+%æ³¨é‡ˆ
+%\renewcommand\thefootnote{*\arabic{footnote}}
 
-\lstset{%ƒvƒƒOƒ‰ƒ€‚ğÚ‚¹‚éÛ‚Ìİ’è
+%ç›®æ¬¡ã®è¡¨ç¤ºãƒ¬ãƒ™ãƒ«è¨­å®š
+\setcounter {tocdepth} {3}
+
+\usepackage{listings}%ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã®ã‚½ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰ã‚’æŒ¿å…¥ã™ã‚‹ãŸã‚ã®ã‚‚ã®
+
+\lstset{
   language={C},
   basicstyle={\small},%
   identifierstyle={\small},%
@@ -107,196 +103,133 @@
   lineskip=-0.5ex%
 }
 
-\begin{document}
-\maketitle%•\†‚Ìì¬
-\thispagestyle{empty}%ƒy[ƒW”Ô†‚ğÁ‹
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin {document}
+
+\begin {titlepage}
+	\begin {center}
+		\vspace {20mm}
+		{\Large Class name} \\
+		\vspace {5mm}
+		%{\Large å’æ¥­è«–æ–‡} \\
+		\vspace {60mm}
+		{\huge Title} 
+		
+%{}
+%{ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa}
+%{}\\
+		\vspace {100mm}
+		{\Large Date} \\
+		\vspace {15mm}
+	
+	{\Large University} \\
+	{\Large Faculty} \\
+	{\Large Department} \\
+	%\vspace {5mm}
+	{\Large Student number} \\
+	{\Large Name} \\
+	\end {center}
+\end {titlepage}
+
+%ã‚¢ãƒ–ã‚¹ãƒˆãƒ©ã‚¯ãƒˆ(è‹±èª)
+%\renewcommand {\abstractname} {\LARGE Abstract}
+%\include {include/abstract_en}
+%ã‚¢ãƒ–ã‚¹ãƒˆãƒ©ã‚¯ãƒˆ(æ—¥æœ¬èª)
+%\renewcommand {\abstractname} {\LARGE è¦æ—¨}
+%\include {include/abstract_jp}
+
+%sectionã‚’chapterã¿ãŸã„ã«å¤‰æ›´
+%\makeatletter
+%\renewcommand{\presectionname}{ç¬¬} %sectionã®æ•°å­—å‰ã«ç¬¬ã‚’æŒ¿å…¥
+%\renewcommand{\postsectionname}{ç« } %sectionã®æ•°å­—å¾Œã«ç« ã‚’æŒ¿å…¥
+%\renewcommand{\section}{%
+%    \if@slide\clearpage\fi
+%    \@startsection{section}{1}{\z@}%
+%    {\Cvs \@plus.5\Cdp \@minus.2\Cdp}% å‰ã‚¢ã‚­
+%    {.5\Cvs \@plus.3\Cdp}% å¾Œã‚¢ã‚­
+%    {\normalfont\LARGE\headfont\raggedright}}
+
+
+%ç›®æ¬¡
+%\pagenumbering {Roman}		%ãƒšãƒ¼ã‚¸ç•ªå·ã‚’ãƒ­ãƒ¼ãƒæ•°å­—ã«
+%\tableofcontents
+
+%\newpage
+
+% å›³ç›®æ¬¡ã®è¡¨ç¤º
+%\listoffigures
+% è¡¨ç›®æ¬¡ã®è¡¨ç¤º
+%\listoftables
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\clearpage
+\setcounter{page}{1}
+\pagenumbering{arabic}	%ãƒšãƒ¼ã‚¸ç•ªå·ã‚’ã‚¢ãƒ©ãƒ“ã‚¢æ•°å­—ã«
+\section{Inrtoduction}
+\begin{eqnarray}
+y_1&=&f_1(x_1,x_2,\cdots,x_6) \nonumber \\
+y_2&=&f_2(x_1,x_2,\cdots,x_6)\nonumber \\
+\vdots \\
+y_6&=&f_6(x_1,x_2,\cdots,x_6)\nonumber 
+\end{eqnarray}
+
+\begin{equation}
+Y=F(X)
+\end{equation}
+
+\begin{equation}
+X=
+	\begin{bmatrix}
+	x_1 &x_2 &x_3 &x_4 &x_5 &x_6
+	\end{bmatrix}
+^T
+\end{equation}
+
+\begin{equation}
+Y=
+	\begin{bmatrix}
+	y_1 &y_2 &y_3 &y_4 &y_5 &y_6
+	\end{bmatrix}
+^T
+\end{equation}
+
+\begin{eqnarray}
+\delta y_1&=&\cfrac{\partial f_1}{\partial x_1}\delta x_1+\cfrac{\partial f_1}{\partial x_2}\delta x_2+\cdots+
+				\cfrac{\partial f_1}{\partial x_6}\delta x_6 \nonumber \\
+\delta y_2&=&\cfrac{\partial f_2}{\partial x_1}\delta x_1+\cfrac{\partial f_2}{\partial x_2}\delta x_2+\cdots+
+				\cfrac{\partial f_2}{\partial x_6}\delta x_6 \nonumber \\
+\vdots \\
+\delta y_6&=&\cfrac{\partial f_m}{\partial x_1}\delta x_1+\cfrac{\partial f_m}{\partial x_2}\delta x_2+\cdots+
+				\cfrac{\partial f_6}{\partial x_6}\delta x_6 \nonumber
+\end{eqnarray}
 
 \newpage
-%\parindent 0pt%ƒCƒ“ƒfƒ“ƒg‚µ‚È‚¢A‚±‚ÌƒhƒLƒ…ƒƒ“ƒg‘S‘Ì‚Å
-
-
-\section{•û–@E“à—e}
-\subsection{‰Û‘è}
-”F¯HŠw‚Ìö‹Æ‚ÅˆÈ‰º‚Ì‰Û‘è‚ªo‘è‚³‚ê‚½B
-\begin{screen}
-“®“IŒv‰æ–@iDPjƒ}ƒbƒ`ƒ“ƒO‚ÌƒAƒ‹ƒSƒŠƒYƒ€‚ğ—˜—p‚µA¬‹K–Í‚Ì’PŒê‰¹º”F¯ÀŒ±‚ğs‚¤BŠÈ’P‚Ì‚½‚ßA‰¹º“ü—Í¨‰¹‹¿•ªÍ‚Ü‚Å‚Ì‰ß’ö‚Í‚·‚Å‚ÉI—¹‚µ‚Ä‚¢‚é‚à‚Ì‚Æ‚µA‚ ‚ç‚©‚¶‚ß—pˆÓ‚³‚ê‚½ƒeƒLƒXƒgƒtƒ@ƒCƒ‹‚Ìƒf[ƒ^‚ğ“ü—Í‚Æ‚·‚éB100’PŒê‚Ìƒeƒ“ƒvƒŒ[ƒg‚É‘Î‚µ‚ÄA“¯‚¶”­º“à—e‚Ì100’PŒêi“¯ˆê˜bÒ‚Ü‚½‚Í•Ê˜bÒj‚ğ–¢’m‰¹º‚ÆŒ©—§‚Ä‚Ä“ü—Í‚µ‚½‚Æ‚«A‰½’PŒê‚ª³‚µ‚­”F¯‚Å‚«‚é‚©‚ğ’²‚×‚éB
-\end{screen}
-
-\subsection{è‡}
-ˆÈ‰º‚És‚Á‚½è‡‚ğ¦‚·B
-\begin{enumerate}
-	\item ƒf[ƒ^ƒtƒ@ƒCƒ‹‚ğç—tH‹Æ‘åŠw‚Ìö‹Æx‰‡ƒVƒXƒeƒ€‚©‚çƒ_ƒEƒ“ƒ[ƒh‚·‚éB
-	\item CŒ¾Œê‚ÅDPƒ}ƒbƒ`ƒ“ƒO‚ÌƒAƒ‹ƒSƒŠƒYƒ€‚ğ‹Lq‚·‚éB
-	\item ì¬‚µ‚½ƒvƒƒOƒ‰ƒ€‚ğÀs‚µA”F¯ÀŒ±‚ğs‚¤B
-	\item ÀŒ±Œ‹‰Ê‚ğ‚Ü‚Æ‚ß‚éB
-	\item ÀŒ±Œ‹‰Ê‚æ‚èl@‚ğs‚¤B
-	\item ƒŒƒ|[ƒg‚ğì¬‚·‚éB
-\end{enumerate}
-
-\subsection{ŠÂ‹«‚Æ‹@Ší}
-ŠÂ‹«‚Æg—p‚µ‚½‹@Ší‚ğˆÈ‰º‚É‚Ü‚Æ‚ß‚éB
-\begin{description}%‘è•t‚«‚Ì‰Óğ‘‚«
-	\item[ƒRƒ“ƒsƒ…[ƒ^]FPanasonic Let's note CF-SX4
-	\item[OS]FWindows8.1
-	\item [ƒvƒƒOƒ‰ƒ~ƒ“ƒOŒ¾Œê]FCŒ¾Œê
-	\item[ƒRƒ“ƒpƒCƒ‰]Fgcc
-\end{description}
-
-\subsection{À‘•‚·‚éƒAƒ‹ƒSƒŠƒYƒ€}
-ƒvƒƒOƒ‰ƒ€‚ÌƒAƒ‹ƒSƒŠƒYƒ€‚É‚Â‚¢‚Äq‚×‚éB\par
-\begin{enumerate}
-	\item ƒeƒ“ƒvƒŒ[ƒg‚Ì100’PŒê‚Ìƒf[ƒ^ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚±‚ŞB
-	\item ”F¯‘ÎÛi–¢’m“ü—Íj‚Ì100’PŒê‚©‚ç1’PŒê‚Ìƒf[ƒ^ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚±‚ŞB
-	\item ƒeƒ“ƒvƒŒ[ƒg’†‚Ì’PŒêAiƒtƒŒ[ƒ€”Ij‚Æ–¢’m“ü—Í’PŒêBiƒtƒŒ[ƒ€”Jj‚Ìƒ}ƒbƒ`ƒ“ƒO‚ğl‚¦‚éBA‚Ìi”Ô–ÚƒtƒŒ[ƒ€‚Ìƒf[ƒ^A15ŸŒ³‚ğ$a_{i,k}$AB‚Ìj”Ô–Ú‚ÌƒtƒŒ[ƒ€ƒf[ƒ^‚ğ$b_{j,k}$‚Æ‚·‚é‚ÆA‚»‚Ì‚ ‚¢‚¾‚Ì‹ÇŠ‹——£‚ÍˆÈ‰º‚Ì‚æ‚¤‚É‚È‚éB
-		\begin{equation}
-			d(i,j) = \sqrt{(a_{i,1} - b_{j,1})^2 + (a_{i,2} - b_{j,2})^2 + EEE+ (a_{i,15} - b_{j,15})^2}
-			\label{eq:e1}
-		\end{equation}
-	\item ‹ÇŠ‹——£‚ğ‘S‚Ä‚ÌƒtƒŒ[ƒ€‘ŠŒİŠÔ‚É‚Â‚¢‚ÄŒvZ‚µ‚½ŒãADPƒ}ƒbƒ`ƒ“ƒO‚ÌƒAƒ‹ƒSƒŠƒYƒ€‚É‰ˆ‚Á‚ÄA‰ŠúğŒ$g(0,0)$A‹«ŠEğŒ$g(i,0)$A$g(0,j)$‚¨‚æ‚Ñ‚»‚Ì‘¼‚ÌŠiq“_‚É‚¨‚¯‚é—İÏ‹——£$g(i,j)$‚ğ‡ŸŒvZ‚·‚éB‚»‚Ì‘¼‚ÌŠiq“_‚Å‚ÍÅ‚à¬‚³‚¢’l‚ğ—p‚¢‚éB
-‰ŠúğŒ
-\begin{equation}
-	g(0,0) = d(0,0)
-	\label{eq:e2}
-\end{equation}\par
-‹«ŠEğŒ
-\begin{equation}
-	i > 0‚É‚Â‚¢‚Ä g(i,0) = g(i -1,0) + d(i,0)
-	\label{eq:e3}
-\end{equation}
-\begin{equation}
-	j > 0‚É‚Â‚¢‚Ä g(0,j) = g(0,j - 1) + d(0,j)
-	\label{eq:e4}
-\end{equation}
-‚»‚Ì‘¼‚ÌŠiq“_
-	\[
-g(i,j) = min\left[
-    \begin{array}{ccc}
-      g(i,j - 1) + d(i,j)\\
-      g(i  - 1,j - 1)+2d(i,j)\\
-      g(i - 1,j) + d(i,j)
-    \end{array}
-  \right]
-\]
-\begin{equation}
-\end{equation}
-	\item ÅI“_‚Ü‚Å‚Ì—İÏ‹——£$g(I,J)$‚ª“¾‚ç‚ê‚½‚çA‚»‚Ì’l‚ğ$(I + J)$‚ÅŠ„‚Á‚½’l‚ğA‚ÆB‚Ì’PŒêŠÔ‹——£‚Æ‚·‚éB
-	\item ƒeƒ“ƒvƒŒ[ƒg‚Ì100’PŒê‘S‚Ä‚É‚Â‚¢‚Ä’PŒêŠÔ‹——£‚ğŒvZ‚µA‚»‚Ì’†‚ÅÅ¬‚Ì’l‚ğ—^‚¦‚½’PŒê‚ğ³‰ğ‚Æ‚·‚éB
-	\item ³‰ğ‚Æ‚µ‚½’PŒê‚Æ”F¯‘ÎÛ‚Ì’PŒê‚ªˆê’v‚µ‚Ä‚¢‚é‚©Œ©‚éB
-	\item ˆê’v‚µ‚Ä‚¢‚È‚©‚Á‚½ê‡‚Íƒeƒ“ƒvƒŒ[ƒg‚Ì‚Ç‚Ì’PŒê‚ÆŠÔˆá‚¦‚½‚Ì‚©‚ğ‹L˜^‚·‚é‚½‚ß‚ÉƒeƒLƒXƒgƒtƒ@ƒCƒ‹‚Éo—Í‚·‚éB
-	\item 2‚©‚ç8‚ğ”F¯‘ÎÛ100’PŒê‘S‚Ä‚É‚Â‚¢‚Äs‚¤B
-	\item ˆê’v‚µ‚½‰ñ”‚©‚ç’PŒê³‰ğ—¦‚ğo—Í‚·‚éB
-\end{enumerate}
-
-\section{Œ‹‰Ê}
-
-\subsection{ƒ\[ƒXƒR[ƒh}
-ƒ\[ƒXƒR[ƒh‚Ìà–¾‚ğ‚·‚éB\par
-ƒeƒ“ƒvƒŒ[ƒg‚Ìƒf[ƒ^ƒtƒ@ƒCƒ‹‚Æ”F¯‘ÎÛ’PŒêi–¢’m“ü—Íj‚Ìƒf[ƒ^ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚İA‚»‚ê‚¼‚ê‚Ì‹ÇŠ‹——£‚ğŒvZ‚µA—İÏ‹——£‚ğZo‚·‚éB—İÏ‹——£‚©‚ç’PŒêŠÔ‹——£‚ğŒvZ‚µAÅ¬‚ğ‚ ‚½‚¦‚é‚à‚Ì‚ğ’T‚·B‚±‚ê‚ğ‘S‚Ä‚Ì”F¯‘ÎÛ’PŒê‚É‚Â‚¢‚Äs‚¢A’PŒê³‰ğ—¦‚ğ‹‚ß‚éB\par
-ˆÈ‰º‚Éì¬‚µ‚½ƒ\[ƒXƒR[ƒh‚ğÚ‚¹‚éB
-%ƒvƒƒOƒ‰ƒ€‚Ìo—Í
-\lstinputlisting[caption=ƒ\[ƒXƒR[ƒh,label=a]{dp-10.c}
-
-\subsection{”F¯Œ‹‰Ê}
-\subsubsection{’PŒê³‰ğ—¦}
-’PŒê³‰ğ—¦‚ğ•\‚É‚Ü‚Æ‚ß‚½Bc•ûŒü‚Ìƒtƒ@ƒCƒ‹–¼‚Íƒeƒ“ƒvƒŒ[ƒgƒf[ƒ^‚Æ‚µ‚Äˆµ‚Á‚½‚à‚ÌB‰¡•ûŒü‚Ìƒtƒ@ƒCƒ‹–¼‚Í”F¯‘ÎÛƒf[ƒ^‚Æ‚µ‚Äˆµ‚Á‚½‚à‚Ì‚Å‚ ‚éB
-\begin{table}[H]
- \caption{ƒeƒ“ƒvƒŒ[ƒgƒf[ƒ^‚Æ”F¯‘ÎÛƒf[ƒ^‚Ì”F¯Œ‹‰Ê}
-  \label{table:t1}
-\begin{center}
-	\begin{tabular}{|c|c|c|c|c|} \hline
-		 & city\_011 & city\_012 & city\_021 & city\_022 \\ \hline
-		city\_011 & 100\% & 100\% & 83\% & 88\% \\ \hline
-		city\_012 & 99\% & 100\% & 96\% & 94\% \\ \hline
-		city\_021 & 92\% & 93\% & 100\% & 100\% \\ \hline
-		city\_022 & 85\% & 87\% & 99\% & 100\% \\ \hline
-	\end{tabular}
-\end{center}
-\end{table}
-
-\newpage
-\subsubsection{”F¯‚ª¸”s‚µ‚½’PŒê‚Ì‘g‚İ‡‚í‚¹}
-ƒeƒ“ƒvƒŒ[ƒgƒf[ƒ^‚ªcity\_011‚Ì‚Æ‚«”F¯‚ª¸”s‚µ‚½’PŒê‚Ì‘g‚İ‡‚í‚¹‚Ì’PŒê”Ô†‚ğˆÈ‰º‚Ì•\‚É‚Ü‚Æ‚ß‚½B
-\begin{table}[H]
- \caption{”F¯¸”s1}
-  \label{table:t2}
-\begin{center}
-\begin{minipage}{0.38\hsize}%2—ñ‚Å•\¦
-	\begin{tabular}{|c|cc|} \hline
-		ŒÂ” & ”F¯‘ÎÛ & ƒeƒ“ƒvƒŒ[ƒg \\ \hline
-		 & city\_021 & city\_011 \\ \hline
-		1 & 8 & 31 \\ \hline
-		2 & 14 & 19 \\ \hline
-		3 & 15 & 54 \\ \hline
-		4 & 43 & 57 \\ \hline
-		5 & 44 & 38 \\ \hline
-		6 & 46 & 12 \\ \hline
-		7 & 58 & 20 \\ \hline
-		8 & 60 & 20 \\ \hline
-		9 & 62 & 20 \\ \hline
-		10 & 74 & 19 \\ \hline
-		11 & 79 & 41 \\ \hline
-		12 & 91 & 4 \\ \hline
-		13 & 92 & 41 \\ \hline
-		14 & 94 & 36 \\ \hline
-		15 & 97 & 41 \\ \hline
-		16 & 98 & 26 \\ \hline
-		17 & 99 & 47 \\ \hline
-	\end{tabular}
-\end{minipage}
-\begin{minipage}{0.2\hsize}%2—ñ‚Å•\¦
-	\begin{tabular}{cc|} \hline
-		  ”F¯‘ÎÛ & ƒeƒ“ƒvƒŒ[ƒg \\ \hline
-		  city\_022 & city\_011 \\ \hline
-		  8 & 31 \\ \hline
-		  13 & 82 \\ \hline
-		  15 & 54 \\ \hline
-		  30 & 34 \\ \hline
-		  36 & 61 \\ \hline
-		  46 & 12 \\ \hline
-		  58 & 20 \\ \hline
-		  62 & 20 \\ \hline
-		  79 & 10 \\ \hline
-		  93 & 41 \\ \hline
-		  97 & 41 \\ \hline
-		  99 & 40 \\ \hline
-		   &  \\ \hline
-		   &  \\ \hline
-		   &  \\ \hline
-		   &  \\ \hline
-		   &  \\ \hline
-	\end{tabular}
-\end{minipage}
-\end{center}
-\end{table}
-
-\subsection{”F¯¸”s‚ÌŒ´ˆö‚ÉŠÖ‚·‚él@}
-”F¯¸”s‚ÌŒ´ˆö‚É‚Â‚¢‚Ä‚Ìl@‚ğs‚¤B\par
-ÀŒ±Œ‹‰Ê‚æ‚èA’PŒê³‰ğ—¦‚ª”äŠr“I’á‚©‚Á‚½•Ê˜bÒ‚ÌÀŒ±‚É‚¨‚¢‚ÄA”F¯‚É¸”s‚µ‚½’PŒê‚ğŒ©”ä‚×‚é‚±‚Æ‚É‚·‚éBƒ\[ƒXƒR[ƒh‚ğ­‚µ•ÏX‚µA”F¯‚É¸”s‚µ‚½‘g‚İ‡‚í‚¹‚ğo—Í‚·‚é‚æ‚¤‚É‚µ‚½Btemp‚ªƒeƒ“ƒvƒŒ[ƒg‚Ì’PŒêAcog‚ª”F¯‘ÎÛ‚Ì’PŒê‚Å‚ ‚éB‚»‚ÌŒ‹‰Ê‚ğˆÈ‰º‚ÉÚ‚¹‚éB\par
-ƒeƒ“ƒvƒŒ[ƒgƒf[ƒ^‚ªcity\_011‚ÅA”F¯‘ÎÛƒf[ƒ^‚ªcity\_021‚Ì‚Æ‚«
+\section{Experiment}
+\ref{fig:mani1}
+%%å›³ã‚’å…¥ã‚Œã‚‹
 \begin{figure}[H]
+\begin{minipage}{0.5 \hsize}
 	\begin{center}
-		\includegraphics[keepaspectratio,width=120mm]{false011-1.png}
-		\caption{”F¯¸”s’PŒêƒŠƒXƒg1}
-		\label{fig:f-1}
+		\includegraphics[keepaspectratio,width=80mm]{manipulator-2.png} %picture name and size
+		\caption{ãƒãƒ‹ãƒ”ãƒ¥ãƒ¬ãƒ¼ã‚¿ãŒä¼¸ã³ãã£ãŸã¨ãã®ç‰¹ç•°ç‚¹}
+		\label{fig:mani1}
 	\end{center}
+\end{minipage}
+\begin{minipage}{0.5 \hsize}
+	\begin{center}
+		\includegraphics[keepaspectratio,width=80mm]{manipulator2-2.png} %picture name and size
+		\caption{ãƒãƒ‹ãƒ”ãƒ¥ãƒ¬ãƒ¼ã‚¿ãŒè‡ªèº«ã®æ–¹ã«æŠ˜ã‚ŠãŸãŸã¾ã‚ŒãŸã¨ãã®ç‰¹ç•°ç‚¹}
+		\label{fig:mani2}
+	\end{center}
+\end{minipage}
 \end{figure}
-ƒeƒ“ƒvƒŒ[ƒgƒf[ƒ^‚ªcity\_011‚ÅA”F¯‘ÎÛƒf[ƒ^‚ªcity\_022‚Ì‚Æ‚«
+
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[keepaspectratio,width=120mm]{false011-2.png}
-		\caption{”F¯¸”s’PŒêƒŠƒXƒg2}
-		\label{fig:f-2}
+		\includegraphics[keepaspectratio,width=60mm]{wrist_singularity.png} %picture name and size
+		\caption{æ‰‹é¦–ç‰¹ç•°ç‚¹}
+		\label{fig:sin3}
 	\end{center}
 \end{figure}
 
-\section{‚Ü‚Æ‚ß}
-–Ú“I‚ğuDPƒ}ƒbƒ`ƒ“ƒO‚ÌƒAƒ‹ƒSƒŠƒYƒ€‚ğ—˜—p‚µ‚ÄA’PŒê‰¹º”F¯‚ğs‚¢A‚»‚ÌŒ‹‰Ê‚ğ‚Ü‚Æ‚ß‚éB‚Ü‚½AŒ‹‰Ê‚æ‚èl@‚ğs‚¢AƒŒƒ|[ƒg‚É‚Ü‚Æ‚ß‚éBv‚Æ‚µ‚½B
-DPƒ}ƒbƒ`ƒ“ƒO‚Ìl‚¦•û‚É‚Â‚¢‚Äà–¾‚µAÀŒ±‚Ì•û–@‚â“à—eAƒvƒƒOƒ‰ƒ€‚ÌƒAƒ‹ƒSƒŠƒYƒ€‚É‚Â‚¢‚Ä‹Lq‚µ‚½B
-—\‘z‚ğq‚×AÀŒ±Œ‹‰Ê‚É‚¨‚¢‚ÄA’PŒê³‰ğ—¦‚Æ”F¯‚ª¸”s‚µ‚½’PŒê‚Ì‘g‚İ‡‚í‚¹‚ğ¦‚µ‚½B
-ÀŒ±Œ‹‰Ê‚æ‚èA“Á’¥—ÊƒxƒNƒgƒ‹‚ğl—¶‚µ‚È‚ª‚ç’PŒê³‰ğ—¦‚ÉŠÖ‚µ‚Ä‚Ìl@‚Æ”F¯¸”s‚ÌŒ´ˆö‚ÉŠÖ‚µ‚Äl@‚ğs‚Á‚½B
-
-\newpage
-\begin{thebibliography}{6}
-	‚È‚µ
-\end{thebibliography}
-\end{document}
+\end {document}
