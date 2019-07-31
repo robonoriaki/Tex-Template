@@ -12,6 +12,7 @@
 \usepackage {here}	%Hを使うためのパッケージ
 %\usepackage{ascmac} %itembox, screenで角が丸くなる
 \usepackage {fancyhdr}
+\usepackage{url}
 \pagestyle{fancy}
 
 \lhead{}%left header
@@ -230,6 +231,42 @@ Y=
 		\caption{手首特異点}
 		\label{fig:sin3}
 	\end{center}
+\end{figure}
+
+%表を入れる
+\begin{figure}[H]
+\begin{minipage}{0.5 \hsize}
+	\begin{center}
+    \tblcaption{飛行ロボットのデータ}
+    \label{table:data}
+	\begin{tabular}{|c|c|}\hline
+		質量$[kg] $& 1.2\\ \hline
+		全長$[mm] $& 430\\ \hline
+		翼幅$[mm] $& 1300 \\ \hline
+		翼面積$[mm^2]$ & 321163 \\ \hline
+		反角$[deg]$ & 0 \\ \hline
+		後退角$[deg]$ & 24.8 \\ \hline
+		迎角$[deg]$ & 12 \\ \hline
+		アスペクト比 & 5.3 \\ \hline
+	\end{tabular}
+	\end{center}
+	\end{minipage}
+%\end{figure}
+%表を入れる
+%\begin{figure}[H]
+	\begin{minipage}{0.5 \hsize}
+	\begin{center}
+    \tblcaption{飛行ロボットに使用するアルミニウムのデータ}
+    \label{table:almi}
+	\begin{tabular}{|c|c|}\hline
+		材質 & 6061\\ \hline
+		密度$[g/cm^3]$ & 2.70 \\ \hline
+		ヤング率$[GPa]$ & 68.60 \\ \hline
+		ポアソン比 & 0.34 \\ \hline
+		降伏応力$[N/mm^2]$ & 315.00 \\ \hline
+	\end{tabular}
+	\end{center}
+	\end{minipage}
 \end{figure}
 
 \end {document}
